@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test ko</title>
+    <link rel="stylesheet" type="text/css" href="style.css" >
+
+</head>
+<body>
+    <!--Search page-->
+    <div id="container" data-bind="visible: showView.Start">
+        <div class="header">
+            <h1>Search</h1>
+        </div>
+        <form data-bind="submit: searchLoc">
+            <input id="search" type="search" name="search" placeholder="Search for a user" data-bind="value: query" autocomplete="off" />
+            <button type="submit">Search</button>
+        </form>
+    <!--Result page-->
+    </div>
+    <div class="pageResult" data-bind="visible: showView.Result">
+        <div class="header">
+            <span class="back" data-bind="click: goToBack">Back</span>
+            <h1>Result</h1>
+        </div>
+        <ul class="result" data-bind="foreach: results ">
+            <li  data-bind="attr: { 'data-model-id' : guid }, click: $parent.details">
+                <img data-bind="attr: { src: img_url }">
+                <span data-bind="text : title"></span></br>
+                <span>Price: </span>
+                <span data-bind="text : price"></span>
+            </li>
+        </ul>
+    </div>
+    <!--Detail page-->
+    <div class="pageDetail" data-bind="visible: showView.Detail">
+        <div class="header">
+            <span class="back" data-bind="click: goToBack">Back</span>
+            <h1>Detail</h1>
+        </div>
+        <ul class="detail-info" data-bind="foreach: detail">
+            <li >
+                <img data-bind="attr: { src: img_url }"></br>
+                <span data-bind="text : title"></span></br>
+                <span>Price: </span>
+                <span data-bind="text : price"></span></br>
+                <button type="submit" data-bind="click: $parent.goToFavorite">To Favorites</button>
+            </li>
+        </ul>
+    </div>
+    <!--Favorite page-->
+    <div class="pageFavorite" data-bind="visible: showView.Favorites">
+        <div class="header">
+            <span class="back" data-bind="click: goToBack">Back</span>
+            <h1>Favorite</h1>
+        </div>
+        <ul class="result" data-bind="foreach: favorites">
+            <li >
+                <img data-bind="attr: { src: img_url }"></br>
+                <span data-bind="text : title"></span></br>
+                <span>Price: </span>
+                <span data-bind="text : price"></span></br>
+            </li>
+        </ul>
+    </div>
+</body>
+    <script type="text/javascript" src="lib/knockout-3.2.0.js"></script>
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="test.js"></script>
+</html>
